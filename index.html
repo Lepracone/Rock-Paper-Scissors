@@ -5,9 +5,10 @@
         return arr[Math.floor(Math.random()*arr.length)];
     }
 
-    function playRound(playerSelection, computerSelection){
-        playerSelection = playerSelection.toLowerCase();
-        computerSelection = computerSelection.toLowerCase();
+    //Plays one round
+    function playRound(){
+        let playerSelection = prompt("Rock, Paper, Scissors?").toLowerCase() ;
+        let computerSelection = computerPlay().toLowerCase();
 
         if(playerSelection === "rock"){
             if(computerSelection === "rock"){
@@ -37,4 +38,9 @@
             }  
         }
     }
+
+    //Starts a 5 round game against CPU
+   // function game()
+
+
 </script>
