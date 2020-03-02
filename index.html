@@ -12,7 +12,7 @@
         
         <!--Top Bar-->
         <div id="topBar">
-            <div>Best of:</div>
+            <span>Best of:</span>
 
             <div class="dropdown">
                 <button id="dropbtn">3</button>
@@ -23,10 +23,32 @@
                     <div id="playNine">9</div>
                 </div>
             </div>
-
+            <span>Total Score:</dspan>
+            <span>User: <span id="userScore">0</span></span>
+            <span>CPU: <span id="cpuScore">0</span></span>
+            <button id="resetScore">Reset Total Score</button>
         </div>
+
+        <!--ScoreBoard-->
+        <div id="scoreBoard">
+            <span>User Score:<span id="instantUserScore">0</span></span>
+            <span>CPU Score<span id="instantCpuScore">0</span></span>
+        </div>
+
+        <!--Message Board-->
+        <div id="messageBoard">Select your weapon to start a new game</div>
+
+        <!--Weapons Display-->
+        <div id="weaponContainer">
+            <div class="square"><img id="rock" src="img/rock.JPG"></div>
+            <div class="square"><img id="paper" src="img/paper.JPG"></div>
+            <div class="square"><img id="scissors" src="img/scissors.JPG"></div>
+            
+        </div>
+
 
         <script type="text/javascript" src="app.js"></script>
     </body>
+
 
 </html>

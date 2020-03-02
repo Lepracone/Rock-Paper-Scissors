@@ -2,7 +2,7 @@
 let playerScore;
 let computerScore;
 let playGames = 3;
-let totalPlayrScore;
+let totalPlayerScore;
 let totalComputerScore;
 
 const dropbtn = document.getElementById("dropbtn");
@@ -10,6 +10,17 @@ const playThree = document.getElementById("playThree");
 const playFive = document.getElementById("playFive");
 const playSeven = document.getElementById("playSeven");
 const playNine = document.getElementById("playNine");
+const userScore = document.getElementById("userScore");
+const cpuScore = document.getElementById("cpuScore");
+const resetScore = document.getElementById("resetScore");
+const instantUserScore = document.getElementById("instantUserScore");
+const instantCpuScore = document.getElementById("instantCpuScore");
+const messageBoard = document.getElementById("messageBoard");
+const rock = document.getElementById("rock");
+const paper = document.getElementById("paper");
+const scissors = document.getElementById("scissor");
+
+
 
 playThree.addEventListener("click", function(){
     playGames = 3;
@@ -30,6 +41,16 @@ playNine.addEventListener("click", function(){
     playGames = 9;
     dropbtn.textContent = 9;
 });
+
+//Reset Score
+resetScore.addEventListener("click", function(){
+    totalPlayerScore = 0;
+    totalComputerScore = 0;
+    playerScore = 0;
+    computerScore = 0;
+    userScore.textContent = 0;
+    cpuScore.textContent = 0;
+})
 
 
 //Creates random computer choise
