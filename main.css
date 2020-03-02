@@ -39,3 +39,7 @@
 .dropdown:hovber #dropbtn{
     background-color: #3e8e41;
 }
+
+#imageChoisesContainer{
+    display: table;
+}

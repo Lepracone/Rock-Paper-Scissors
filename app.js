@@ -1,9 +1,11 @@
 //Variables
-let playerScore;
-let computerScore;
+let playerScore = 0;
+let computerScore = 0;
 let playGames = 3;
-let totalPlayerScore;
-let totalComputerScore;
+let totalPlayerScore = 0;
+let totalComputerScore = 0;
+let onHold = true;
+let playerSelection;
 
 const dropbtn = document.getElementById("dropbtn");
 const playThree = document.getElementById("playThree");
@@ -18,10 +20,13 @@ const instantCpuScore = document.getElementById("instantCpuScore");
 const messageBoard = document.getElementById("messageBoard");
 const rock = document.getElementById("rock");
 const paper = document.getElementById("paper");
-const scissors = document.getElementById("scissor");
+const scissors = document.getElementById("scissors");
+const newGame = document.getElementById("newGame");
+const playerImage = document.getElementById("playerImage");
+const cpuImage = document.getElementById("cpuImage");
 
 
-
+//Best of dropdown
 playThree.addEventListener("click", function(){
     playGames = 3;
     dropbtn.textContent = 3;
@@ -52,6 +57,38 @@ resetScore.addEventListener("click", function(){
     cpuScore.textContent = 0;
 })
 
+//Player Selection
+rock.addEventListener("click", function(){
+    playerSelection = "rock";
+    if(onHold === false){
+        if(playerScore == playGames || computerScore == playGames){
+            endGame();
+        }else{
+            playRound();
+        }
+    }      
+});
+
+paper.addEventListener("click", function(){
+    playerSelection = "paper";
+    if(onHold === false){
+        if(playerScore == playGames || computerScore == playGames){
+            endGame();
+        }else{
+            playRound();
+        }
+    } 
+});
+scissors.addEventListener("click", function(){
+    playerSelection = "scissors";
+    if(onHold === false){
+        if(playerScore == playGames || computerScore == playGames){
+            endGame();
+        }else{
+            playRound();
+        }
+    } 
+});
 
 //Creates random computer choise
 let computerPlay = function(){
@@ -61,56 +98,91 @@ let computerPlay = function(){
 
 //Plays one round
 function playRound(){
-    let playerSelection = prompt("Rock, Paper, Scissors?").toLowerCase() ; //Asks user for choise and set it to lower case
     let computerSelection = computerPlay().toLowerCase(); //Calls computerPlay function and set the random generated value to lower case
-    
+    playerImage.innerHTML = '<img src="img/'+playerSelection+'.JPG">';
+    cpuImage.innerHTML = '<img src="img/'+computerSelection+'.JPG">'
     if(playerSelection === computerSelection){
-        console.log("It's a draw, nobody scores on this round!");
+        messageBoard.textContent = "It's a draw!";
 
     }else if(playerSelection === "rock"){
         if(computerSelection === "paper"){
             computerScore++;
-            console.log("You lost this round! Paper beats Rock");
+            instantCpuScore.textContent = computerScore;
+            messageBoard.textContent = "You lost this round! Paper beats Rock";
         }else if(computerSelection === "scissors"){
             playerScore++;
-            console.log("You won this round! Rock beats Scissors");
+            instantUserScore.textContent = playerScore;
+            messageBoard.textContent = "You won this round! Rock beats Scissors";
         }   
 
     }else if(playerSelection === "paper"){
         if(computerSelection === "rock"){
             playerScore++;
-            console.log("You won this round! Paper beats Rock!");
+            instantUserScore.textContent = playerScore;
+            messageBoard.textContent ="You won this round! Paper beats Rock!";
         }else if(computerSelection === "scissors"){
             computerScore++;
-            console.log("You lost this round! Scissors beats Paper!");
+            instantCpuScore.textContent = computerScore;
+            messageBoard.textContent ="You lost this round! Scissors beats Paper!";
         }  
 
     }else if(playerSelection === "scissors"){
         if(computerSelection === "rock"){
             computerScore++;
-            console.log("You lost this round! Rock beats Scissors!");
+            instantCpuScore.textContent = computerScore;
+            messageBoard.textContent ="You lost this round! Rock beats Scissors!";
         }else if(computerSelection === "paper"){
             playerScore++;
-            console.log("You won this round! Scissors beats Paper!");
+            instantUserScore.textContent = playerScore;
+            messageBoard.textContent ="You won this round! Scissors beats Paper!";
         }  
     }
+    if(playerScore == playGames || computerScore == playGames){
+        endGame();
+    }
 }
 
-//Starts a 5 round game against CPU
-function game(){
+//Starts a game with multiple rounds
+function gameReset(){
     playerScore = 0; //Resets Score
-    computerScore =0;
+    computerScore = 0;
+    instantCpuScore.textContent = computerScore;
+    instantUserScore.textContent = playerScore;
+}
 
-    for(let i = 0; i<5; i++){
-        playRound(); //Loop calling the function playRound 5 times
-    }
+function endGame(){
+    //Once the loop finishes verify the winner and announce
+    if(playerScore == playGames){
+        messageBoard.textContent = "You won the game!!! Press New Game to play again!";
+        totalPlayerScore++;
+        userScore.textContent = totalPlayerScore;
+        onHold = true;
 
-    //Once the loop verify the winner and announce
-    if(playerScore > computerScore){
-        console.log("You won the game!!!");
-    }else if(computerScore > playerScore){
-        console.log("You lost the game!!!");
-    }else{
-        console.log("It's a draw!!!");
+    }else if((computerScore == playGames)){
+        messageBoard.textContent = "You lost the game!!! Press New Game to play again!";
+        totalComputerScore++;
+        cpuScore.textContent = totalComputerScore;
+        onHold = true;
     }
 }
+    
+
+
+//New Game Button
+
+newGame.addEventListener("click", function(){
+    onHold = false;
+    messageBoard.textContent = "Choose your weapon!";
+    gameReset();
+
+})
+
+//Reset total score Button
+resetScore.addEventListener("click", function(){
+    totalPlayerScore = 0;
+    totalComputerScore = 0;
+    userScore.textContent = 0;
+    cpuScore.textContent = 0;
+    onHold = true;
+    messageBoard.textContent = "Press New Game to play again!"
+})
