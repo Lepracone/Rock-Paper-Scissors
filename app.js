@@ -55,6 +55,8 @@ resetScore.addEventListener("click", function(){
     computerScore = 0;
     userScore.textContent = 0;
     cpuScore.textContent = 0;
+    playerImage.textContent = "";
+    cpuImage.textContent = "";
 })
 
 //Player Selection
@@ -171,8 +173,15 @@ function endGame(){
 //New Game Button
 
 newGame.addEventListener("click", function(){
-    onHold = false;
     messageBoard.textContent = "Choose your weapon!";
+    if((playerScore != playGames && computerScore != playGames) && (playerScore+computerScore > 0)){
+        totalComputerScore++;
+        cpuScore.textContent = totalComputerScore;
+        messageBoard.textContent = "Game wasn't finished! 1 point to the CPU! Choose your weapon!";
+    }
+    onHold = false;
+    playerImage.textContent = "";
+    cpuImage.textContent = "";
     gameReset();
 
 })

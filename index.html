@@ -5,6 +5,7 @@
         <!--CSS-->
         <link rel="stylesheet" href="main.css">
         <title>Rock, Paper, Scissors game</title>
+        <link href="https://fonts.googleapis.com/css?family=Bowlby+One+SC|Handlee&display=swap" rel="stylesheet">
     </head>
 
     <body>
@@ -12,28 +13,32 @@
         
         <!--Top Bar-->
         <div id="topBar">
-            <span>Best of:</span>
+            <div id="fLeft">
+                <span class="topBarElement">Best of:</span>
 
-            <div class="dropdown">
-                <button id="dropbtn">3</button>
-                <div class="dropdown-content">
-                    <div id="playThree">3</div>
-                    <div id="playFive">5</div>
-                    <div id="playSeven">7</div>
-                    <div id="playNine">9</div>
+                <div class="dropdown">
+                    <button id="dropbtn">3</button>
+                    <div class="dropdown-content">
+                        <div id="playThree">3</div>
+                        <div id="playFive">5</div>
+                        <div id="playSeven">7</div>
+                        <div id="playNine">9</div>
+                    </div>
                 </div>
+                <button class="topBarElement" id="newGame">New Game</button>
+             </div>
+            <div id="fRight">
+                <span class="topBarElement">Total Score:</span>
+                <span class="topBarElement">User: <span id="userScore">0</span></span>
+                <span class="topBarElement">CPU: <span id="cpuScore">0</span></span>
+            <button class="topBarElement" id="resetScore">Reset Total Score</button>
             </div>
-            <button id="newGame">New Game</button>
-            <span>Total Score:</dspan>
-            <span>User: <span id="userScore">0</span></span>
-            <span>CPU: <span id="cpuScore">0</span></span>
-            <button id="resetScore">Reset Total Score</button>
         </div>
-
+        
         <!--ScoreBoard-->
         <div id="scoreBoard">
-            <span>User Score:<span id="instantUserScore">0</span></span>
-            <span>CPU Score<span id="instantCpuScore">0</span></span>
+            <span>User Score: <span id="instantUserScore">0</span></span>
+            <span>CPU Score: <span id="instantCpuScore">0</span></span>
         </div>
 
         <!--Message Board-->
